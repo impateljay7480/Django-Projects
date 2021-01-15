@@ -1,0 +1,24 @@
+
+RewriteEngine on  
+
+RewriteRule ^HOME  index.php [NC,L]  
+RewriteRule ^ABOUT  aboutus.php [NC,L]
+RewriteRule ^CONTACT  contectus.php [NC,L]
+RewriteRule ^PROJECTS  project.php [NC,L]
+RewriteRule ^PROJECT_DETAIL  project_detail.php [NC,L]
+RewriteRule ^COMPONENTS  component.php [NC,L]
+RewriteRule ^COMPONENT_DETAIL  component_detail.php [NC,L]
+RewriteRule ^SIGN_INPAGE  sign_in.php [NC,L]
+RewriteRule ^ADMINCONTROL  admin.php [NC,L]
+RewriteRule ^CONTROL  controller/crud.php [NC,L] 
+RewriteRule ^LISTOFPROJECT  project_list.php [NC,L]
+RewriteRule ^LISTOFCOMPONENT  componentlist.php [NC,L]
+RewriteRule ^OUTPAGE  controller/logout.php [NC,L]
+
+
+
+
+
+
+
+

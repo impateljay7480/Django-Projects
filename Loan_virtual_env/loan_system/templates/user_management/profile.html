@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>User :: Profile</title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<div class="slider-height2 hero-overly2 d-flex align-items-center">
+<div class="container">
+<div class="row">
+<div class="col-xl-12">
+<div class="hero-cap text-center pt-200">
+<h2 style="text-decoration: underline;">Profile</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="apply-area pt-50 pb-150">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<div class="apply-wrapper">
+
+<form method="POST">{% csrf_token %}
+<div class="row">
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* FIRST NAME</label>
+<input type="text" name="firstname" value="{{ user_detail.firstname}}" placeholder="Enter First Name">
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Last NAME</label>
+<input type="text" name="lastname" value="{{ user_detail.lastname}}" placeholder="Enter Last Name">
+</div>
+</div>
+
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Email Adderess</label>
+<input type="email" name="email" value="{{ user_detail.email}}" placeholder="Enter email">
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Phone Number</label>
+<input type="text" name="phone" value="{{ user_detail.phone}}" placeholder="Enter Phone Number">
+</div>
+</div>
+
+{% for message in messages %}
+<label style="color: red">{{message}}</label>
+{% endfor %}
+
+</div>
+<button class="btn apply-btn mt-30" type="submit">Update Profile</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</main>
+{% endblock %}

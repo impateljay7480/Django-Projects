@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Main Admin :: Branch Of Bank</title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<div class="slider-height2 hero-overly2 d-flex align-items-center">
+<div class="container-fluid ">
+<div class="row">
+<div class="col-xl-12">
+<div class="hero-cap text-center pt-200">
+<h2 style="text-decoration: underline;">Bank Details</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="apply-area pt-50 pb-150">
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="col-lg-10">
+<div class="apply-wrapper">
+
+<div class="mb-3">
+<a href="{% url 'main_admin_management:add' id=main_bank_id %}" class="genric-btn success circle">Add Bank</a>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Bank name</th>
+      <th scope="col">Pincode</th>
+      <th scope="col">State</th>
+      <th scope="col">City</th>
+      <th scope="col">District</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for i in all_branch %}
+    <tr>
+      <th scope="row">{{i.pk}}</th>
+      <td>{{i.bankname}}</td>
+      <td>{{i.pincode}}</td>
+      <td>{{i.state}}</td>
+      <td>{{i.city}}</td>
+      <td>{{i.district}}</td>
+      <td class="justify-content-center">
+      	<a href="{% url 'main_admin_management:edit' i.pk %}" class="genric-btn warning circle"><div class="icon"><i class="fa fa-edit"></i></div></a>
+      	<a href="{% url 'main_admin_management:delete' i.pk %}" class="genric-btn danger circle"><div class="icon"><i class="fa fa-trash"></i></div></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</main>
+{% endblock %}

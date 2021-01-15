@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Main Admin :: User List</title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<div class="slider-height2 hero-overly2 d-flex align-items-center">
+<div class="container-fluid ">
+<div class="row">
+<div class="col-xl-12">
+<div class="hero-cap text-center pt-200">
+<h2 style="text-decoration: underline;">User List</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="apply-area pt-50 pb-150">
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="col-lg-10">
+<div class="apply-wrapper">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">u_primery_id</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email Id</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for i in user_data1 %}
+    <tr>
+      <th scope="row">{{i.pk}}</th>
+      <td>{{i.u_primery_id}}</td>
+      <td>{{i.firstname}}</td>
+      <td>{{i.lastname}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.phone}}</td>
+      <td class="justify-content-center">
+      	<a href="{% url 'main_admin_management:delete' i.phone %}" class="genric-btn danger circle"><div class="icon"><i class="fa fa-trash"></i></div></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</main>
+{% endblock %}

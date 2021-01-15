@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Loan :: Blog</title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+
+<section class="blog_area section-padding">
+<div class="container">
+<div class="row">
+<div class="col-lg-8 mb-5 mb-lg-0">
+<div class="blog_left_sidebar">
+
+{% if particular_cat %}
+
+{% for i in particular_cat %}
+<article class="blog_item">
+<div class="blog_item_img">
+<img class="card-img rounded-0" src="{{ i.b_image.url}}" alt="">
+</div>
+<div class="blog_details">
+<a class="d-inline-block" href="{% url 'login_management:view_blog_detail' i.id %}">
+<h2>{{i.b_subject}}</h2>
+</a>
+<p>{{i.b_description}}</p>
+<ul class="blog-info-link">
+<li><i class="fa fa-tags"></i> {{ i.b_tag}}</li>
+<li><i class="fa fa-calendar"></i> {{ i.b_date}}</li>
+
+</ul>
+</div>
+</article>
+{% endfor %}
+
+
+{% else %}
+
+{% for i in recent_post %}
+<article class="blog_item">
+<div class="blog_item_img">
+<img class="card-img rounded-0" src="{{ i.b_image.url}}" alt="">
+</div>
+<div class="blog_details">
+<a class="d-inline-block" href="{% url 'login_management:view_blog_detail' i.id %}">
+<h2>{{i.b_subject}}</h2>
+</a>
+<p>{{i.b_description}}</p>
+<ul class="blog-info-link">
+<li><i class="fa fa-tags"></i> {{ i.b_tag}}</li>
+<li><i class="fa fa-calendar"></i> {{ i.b_date}}</li>
+
+</ul>
+</div>
+</article>
+{% endfor %}
+
+{% endif %}
+
+
+
+
+
+
+
+</div>
+</div>
+<div class="col-lg-4">
+<div class="blog_right_sidebar">
+<aside class="single_sidebar_widget search_widget">
+<form method="POST">{% csrf_token %}
+<div class="form-group">
+<div class="input-group mb-3">
+<input type="text" class="form-control" name="search_text1" placeholder='Search Category' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Category'">
+<div class="input-group-append">
+
+<button class="btns" type="button"><i class="ti-microphone"></i></button>
+</div>
+</div>
+</div>
+<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" name="search" value="search" type="submit">Search</button>
+</form>
+</aside>
+<aside class="single_sidebar_widget post_category_widget">
+<h4 class="widget_title">Category</h4>
+<ul class="list cat-list">
+{% for j in blog_category%}
+<li>
+<a href="{% url 'login_management:view_post' j.category_name %}" class="d-flex">
+<p>{{ j.category_name}}</p>
+<p>({{ j.add_blog_in }})</p>
+</a>
+</li>
+{% endfor %}
+</ul>
+</aside>
+<aside class="single_sidebar_widget popular_post_widget">
+<h3 class="widget_title">Recent Post</h3>
+{% for k in recent_post %}
+<div class="media post_item">
+ <img src="{{ k.b_image.url }}" width="70" height="70" alt="post">
+<div class="media-body">
+<a href="{% url 'login_management:view_blog_detail' k.id %}">
+<h3>{{k.b_subject}}</h3>
+</a>
+<p>{{ k.b_date }}</p>
+</div>
+</div>
+{% endfor %}
+</aside>
+<aside class="single_sidebar_widget tag_cloud_widget">
+<h4 class="widget_title">Tag Clouds</h4>
+<ul class="list">
+<li>
+<a href="#">project</a>
+</li>
+<li>
+<a href="#">love</a>
+</li>
+<li>
+<a href="#">technology</a>
+</li>
+<li>
+<a href="#">travel</a>
+</li>
+<li>
+<a href="#">restaurant</a>
+</li>
+<li>
+<a href="#">life style</a>
+ </li>
+<li>
+<a href="#">design</a>
+</li>
+<li>
+<a href="#">illustration</a>
+</li>
+</ul>
+</aside>
+<aside class="single_sidebar_widget newsletter_widget">
+<h4 class="widget_title">Newsletter</h4>
+<form method="POST" name="subscribe">{% csrf_token %}
+<div class="form-group">
+<input type="email" class="form-control" name="b_email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+</div>
+<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" name="subscribe" value="subscribe" type="submit">Subscribe</button>
+</form>
+{% for message in messages %}
+<div class="alert alert-{{ message.tags}}" role="alert">{{ message }}</div>
+{% endfor %}
+</aside>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+{% endblock %}

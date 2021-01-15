@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Loan :: Blog-detail </title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<section class="blog_area single-post-area section-padding">
+<div class="container">
+<div class="row">
+<div class="col-lg-8 posts-list">
+<div class="single-post">
+<div class="feature-img">
+<img class="img-fluid" src="{{ particular_blog.b_image.url}}" alt="">
+</div>
+<div class="blog_details">
+<h2>{{particular_blog.b_subject}}
+</h2>
+ <ul class="blog-info-link mt-3 mb-4">
+<li><a href="#"><i class="fa fa-user"></i> {{ particular_blog.b_tag}}</a></li>
+<li><i class="fa fa-calendar"></i> {{ particular_blog.b_date}}</li>
+</ul>
+<p class="excert">
+{{particular_blog.b_description}}
+</p>
+</div>
+</div>
+ <div class="navigation-top">
+<div class="d-sm-flex justify-content-between text-center">
+<p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
+people like this</p>
+<div class="col-sm-4 text-center my-2 my-sm-0">
+
+</div>
+<ul class="social-icons">
+<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+<li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+<li><a href="#"><i class="fab fa-behance"></i></a></li>
+</ul>
+</div>
+</div>
+<div class="comments-area">
+<h4>{{no_comment}} Comments</h4>
+{% for c in blog_comment %}
+<div class="comment-list">
+<div class="single-comment justify-content-between d-flex">
+<div class="user justify-content-between d-flex">
+<div class="thumb">
+<img src="{{ c.c_image.url }}" alt="">
+</div>
+<div class="desc">
+<p class="comment">
+{{ c.c_message}}
+</p>
+<div class="d-flex justify-content-between">
+<div class="d-flex align-items-center">
+<h5>
+<a href="#">{{ c.c_name }}</a>
+</h5>
+<p class="date">{{ c.c_datetime }}</p>
+</div>
+<form method="POST">{% csrf_token %}
+<div class="reply-btn">
+<input type="hidden" name="audio_name" value="{{ c.audio_file_name}}">
+<button name="play" value="play" class="btn-reply text-uppercase">Play</button>
+</div>
+</form>
+</div>
+</div>
+ </div>
+</div>
+</div>
+{% endfor %}
+
+	<!-- {% for c in blog_comment %}
+	<div class="comment-list ml-5">
+	<div class="single-comment justify-content-between d-flex">
+	<div class="user justify-content-between d-flex">
+	<div class="thumb">
+	<img src="{{ c.c_image.url }}" alt="">
+	</div>
+	<div class="desc">
+	<p class="comment">
+	{{ c.c_message}}
+	</p>
+	<div class="d-flex justify-content-between">
+	<div class="d-flex align-items-center">
+	<h5>
+	<a href="#">{{ c.c_name }}</a>
+	</h5>
+	<p class="date">{{ c.c_datetime }}</p>
+	</div>
+	<div class="reply-btn">
+	<a href="#" class="btn-reply text-uppercase">reply</a>
+	</div>
+	</div>
+	</div>
+	 </div>
+	</div>
+	</div>
+	{% endfor %} -->
+
+
+
+
+
+
+</div>
+{% if id %}
+	<div class="comment-form">
+	<h4>Leave a Reply</h4>
+	<form class="form-contact comment_form" method="POST" id="commentForm">{% csrf_token%}
+		<div class="row">
+		<div class="col-12">
+		<div class="form-group">
+		<textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+		</div>
+		</div>
+		</div>
+
+		<div class="col-12">
+		<div class="form-group">
+		<label>* Message Convert Audio </label>
+
+		<div class="radio">
+		<input id="audio" name="audio" type="radio" value="en" checked="">
+		<label for="radio-6" class="radio-label">English</label>
+		</div>
+		<div class="radio">
+		<input id="audio" name="audio" type="radio" value="gu">
+		<label for="radio-7" class="radio-label">Gujarati</label>
+		</div>
+		<div class="radio">
+		<input id="audio" name="audio" type="radio" value="hi">
+		<label for="radio-7" class="radio-label">Hindi</label>
+		</div>
+		<div class="radio">
+		<input id="audio" name="audio" type="radio" value="ja">
+		<label for="radio-7" class="radio-label">Japanese</label>
+		</div>
+		</div>
+		</div>	
+
+		<div class="form-group">
+		<button type="submit" name="send_message" value="send_message"  class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+		</div>
+	</form>
+	</div>
+{% endif %}
+</div>
+<div class="col-lg-4">
+<div class="blog_right_sidebar">
+<aside class="single_sidebar_widget search_widget">
+<form method="POST">{% csrf_token %}
+<div class="form-group">
+<div class="input-group mb-3">
+<input type="text" class="form-control" name="search_text1" placeholder='Search Category' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Category'">
+<div class="input-group-append">
+
+<button class="btns" type="button"><i class="ti-microphone"></i></button>
+</div>
+</div>
+</div>
+<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" name="search" value="search" type="submit">Search</button>
+</form>
+</aside>
+<aside class="single_sidebar_widget post_category_widget">
+<h4 class="widget_title">Category</h4>
+<ul class="list cat-list">
+{% for j in blog_category%}
+<li>
+<a href="{% url 'login_management:view_post' j.category_name %}" class="d-flex">
+<p>{{ j.category_name}}</p>
+<p>({{ j.add_blog_in }})</p>
+</a>
+</li>
+{% endfor %}
+</ul>
+</aside>
+<aside class="single_sidebar_widget popular_post_widget">
+<h3 class="widget_title">Recent Post</h3>
+{% for k in recent_post %}
+<div class="media post_item">
+ <img src="{{ k.b_image.url }}" width="70" height="70" alt="post">
+<div class="media-body">
+<a href="{% url 'login_management:view_blog_detail' k.id %}">
+<h3>{{k.b_subject}}</h3>
+</a>
+<p>{{ k.b_date }}</p>
+</div>
+</div>
+{% endfor %}
+</aside>
+<aside class="single_sidebar_widget tag_cloud_widget">
+<h4 class="widget_title">Tag Clouds</h4>
+<ul class="list">
+<li>
+<a href="#">project</a>
+</li>
+<li>
+<a href="#">love</a>
+</li>
+<li>
+<a href="#">technology</a>
+</li>
+<li>
+<a href="#">travel</a>
+</li>
+<li>
+<a href="#">restaurant</a>
+</li>
+<li>
+<a href="#">life style</a>
+ </li>
+<li>
+<a href="#">design</a>
+</li>
+<li>
+<a href="#">illustration</a>
+</li>
+</ul>
+</aside>
+<aside class="single_sidebar_widget newsletter_widget">
+<h4 class="widget_title">Newsletter</h4>
+<form method="POST" name="subscribe">{% csrf_token %}
+<div class="form-group">
+<input type="email" class="form-control" name="b_email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+</div>
+<button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" name="subscribe" value="subscribe" type="submit">Subscribe</button>
+</form>
+{% for message in messages %}
+<div class="alert alert-{{ message.tags}}" role="alert">{{ message }}</div>
+{% endfor %}
+</aside>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+{% endblock %}

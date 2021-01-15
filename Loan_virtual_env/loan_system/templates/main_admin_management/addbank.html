@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Main Admin :: Bank Add </title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<div class="slider-height2 hero-overly2 d-flex align-items-center">
+<div class="container">
+<div class="row">
+<div class="col-xl-12">
+<div class="hero-cap text-center pt-200">
+<h2 style="text-decoration: underline;">Register</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="apply-area pt-50 pb-150">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<div class="apply-wrapper">
+
+<form method="POST">{% csrf_token %}
+<div class="row">
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>*Bank Name</label>
+<input type="text" name="bankname" value="{{ main_bank_name }}" placeholder="Bank Name" required >
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>*Pincode</label>
+<input type="text" name="pincode" placeholder="Enter Pincode" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>*State</label>
+<input type="text" name="state" placeholder="Enter State" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* DISTRICT</label>
+<input type="text" name="district" placeholder="Enter Districti"  required>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>*City</label>
+<input type="text" name="city" placeholder="Enter City" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+</div>
+
+<div class="col-lg-6">
+<input type="checkbox" name="mainbank" value="True" id="confirm-checkbox" >
+<label>Main Bank In District</label>
+</div>
+</div>
+
+{% for message in messages %}
+<label style="color: red">{{message}}</label>
+{% endfor %}
+
+</div>
+<button class="btn apply-btn mt-30" type="submit">Add Bank</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</main>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Main Admin :: Add Blog</title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<div class="slider-height2 hero-overly2 d-flex align-items-center">
+<div class="container">
+<div class="row">
+<div class="col-xl-12">
+<div class="hero-cap text-center pt-200">
+<h2 style="text-decoration: underline;">Add Blog</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="apply-area pt-100 pb-150">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<div class="apply-wrapper">
+
+<div class="mb-3">
+<a href="{% url 'main_admin_management:add_blog_category' %}" class="genric-btn success circle">Add Category</a>
+</div>
+
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+<div class="row">
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* Choose Category</label>
+<div class="select-option mb-10">
+<select name="category" id="select1"  required>
+{% for i in all_category %}
+<option value="{{ i.category_name}}">{{ i.category_name}}</option>
+{% endfor %}
+</select>
+</div>
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* Upload Blog Image</label>
+<input type="FILE" name="image"  required>
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* Enter Blog Subject</label>
+<input type="text" name="subject" placeholder="Enter Blog Subject" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Enter Blog Tag</label>
+<input type="text" name="tag" placeholder="Enter Blog Tag" required>
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* Enter Blog Descriptions</label>
+<textarea name="description" placeholder="Enter Blog Descriptions" rows="10" cols="85" required></textarea>
+</div>
+</div>
+
+
+
+<button class="btn apply-btn mt-30" type="submit">Add Blog</button>
+
+</div>
+</form>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</main>
+{% endblock %}

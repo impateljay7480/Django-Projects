@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Loan :: Login </title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<div class="slider-height2 hero-overly2 d-flex align-items-center">
+<div class="container">
+<div class="row">
+<div class="col-xl-12">
+<div class="hero-cap text-center pt-200">
+<h2 style="text-decoration: underline;">Login</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="apply-area pt-50 pb-150">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<div class="apply-wrapper">
+
+<form method="POST">{% csrf_token %}
+<div class="row">
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Email Adderess / Mobile Number </label>
+<input type="text" name="email" placeholder="Enter email id / mobile number ">
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Password</label>
+<input type="password" name="password" placeholder="Enter Password">
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<a href="{% url 'login_management:register'%}" style="color: blue;">For New User ?</a>
+</div>
+</div>
+
+<div class="col-lg-6"></div>
+<div class="col-lg-6">
+{% for message in messages %}
+<label style="color: red">{{message}}</label>
+{% endfor %}
+</div>
+
+</div>
+<button class="btn apply-btn mt-30" type="submit">Login</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</main>
+{% endblock %}

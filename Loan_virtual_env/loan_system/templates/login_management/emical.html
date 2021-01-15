@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Loan :: EMI Calculator </title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<div class="slider-height2 hero-overly2 d-flex align-items-center">
+<div class="container">
+<div class="row">
+<div class="col-xl-12">
+<div class="hero-cap text-center pt-200">
+<h2 style="text-decoration: underline;">EMI Calculator</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="apply-area pt-100 pb-150">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<div class="apply-wrapper">
+
+<form method="POST">{% csrf_token %}
+<div class="row">
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* SELECT LOAN TYPE</label>
+<div class="select-option mb-10">
+<select name="loantype" id="select1">
+<option value="personal Loan">Personal Loan</option>
+<option value="Home Loan">Home Loan</option>
+</select>
+</div>
+</div>
+</div>
+
+<div class="col-lg-4">
+<div class="single-form">
+<label>*Enter Loan Amount</label>
+<input type="text" name="amount" placeholder="Enter Loan Amount">
+</div>
+</div>
+
+<div class="col-lg-4">
+<div class="single-form">
+<label>*Enter Loan Tenure<b>(in month)</b></label>
+<input type="text" name="month" placeholder="Enter Loan Tenure">
+</div>
+</div>
+
+<div class="col-lg-4">
+<div class="single-form">
+<label>*Interest Rate</label>
+<input type="text" name="rate" placeholder="Interest Rate">
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="single-form">
+{% for message in messages %}
+<div class="alert alert-{{ message.tags}}" role="alert">{{ message }}</div>
+{% endfor %}
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="single-form">
+<button class="btn apply-btn mt-30" type="submit">Calculate EMI</button>
+</div>
+</div>
+
+</div>
+</form>
+
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</main>
+{% endblock %}

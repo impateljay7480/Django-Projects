@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>User :: Loan Status</title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<div class="slider-height2 hero-overly2 d-flex align-items-center">
+<div class="container-fluid ">
+<div class="row">
+<div class="col-xl-12">
+<div class="hero-cap text-center pt-200">
+<h2 style="text-decoration: underline;">Bank Details</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="apply-area pt-50 pb-150">
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="col-lg-10">
+<div class="apply-wrapper">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Customer Loan Id</th>
+      <th scope="col">Loan Type</th>
+      <th scope="col">Loan Amount</th>
+      <th scope="col">Loan Tenure</th>
+      <th scope="col">Intrest Rate</th>
+      <th scope="col">Status</th>
+      <th scope="col">Loan Responce From Bank</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for i in loan_detail %}
+    <tr>
+      <th scope="row">{{i.pk}}</th>
+      <td>{{i.u_primery_id}}</td>
+      <td>{{i.loantype}}</td>
+      <td>{{i.l_amount}}</td>
+      <td>{{i.l_tenure}}</td>
+      <td>{{i.l_interest_rate}}</td>
+      {% if i.approved_loan == 'False' %}
+      <td class="justify-content-center"><span class="badge badge-pill badge-danger">Canceled</span></td>
+      <td class="justify-content-center"></td>
+      {% elif i.approved_loan == 'True' %}
+      <td class="justify-content-center"><span class="badge badge-pill badge-success">Approved</span></td>
+      <td class="justify-content-center"><a href="#"><span class="badge badge-pill badge-info">Click To Show Responce</span></a></td>
+      {% else %}
+      <td class="justify-content-center"><span class="badge badge-pill badge-warning">Peanding</span></td>
+      <td class="justify-content-center"></td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</main>
+{% endblock %}
+
+

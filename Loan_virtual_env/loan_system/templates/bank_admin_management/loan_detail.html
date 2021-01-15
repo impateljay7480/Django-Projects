@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Bank Admin :: Loan Detail</title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<div class="slider-height2 hero-overly2 d-flex align-items-center">
+<div class="container">
+<div class="row">
+<div class="col-xl-12">
+<div class="hero-cap text-center pt-200">
+<h2 style="text-decoration: underline;">Loan Details of {{loan_detail.firstname}}</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="apply-area pt-100 pb-150">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<div class="apply-wrapper">
+
+<form method="POST">{% csrf_token %}
+<div class="row">
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* Loan Type</label>
+<input type="text" name="loantype" value="{{loan_detail.loantype}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* FIRST NAME</label>
+<input type="text" name="firstname" value="{{loan_detail.firstname}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Last NAME</label>
+<input type="text" name="lastname" value="{{loan_detail.lastname}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* Gender</label>
+<input type="text" name="gender" value="{{loan_detail.radio}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Email Adderess</label>
+<input type="email" name="email" value="{{loan_detail.email}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Phone Number</label>
+<input type="text" name="phone" value="{{loan_detail.phone}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* MARITAL STATUS</label>
+<input type="text" name="maritalstatus" value="{{loan_detail.maritalstatus}}" disabled>
+</div>
+</div>
+
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Date Of Birth</label>
+<input type="text" name="dob" value="{{loan_detail.dob}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* PROFESSIONAL</label>
+<input type="text" name="professional" value="{{loan_detail.professional}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* ADDRESS</label>
+<input type="text" name="address" value="{{loan_detail.address}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* TOWN/CITY</label>
+<input type="text" name="city" value="{{loan_detail.city}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* DISTRICT</label>
+<input type="text" name="district" value="{{loan_detail.district}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* State</label>
+<input type="text" name="state" value="{{loan_detail.state}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* PinCode</label>
+<input type="text" name="pincode" value="{{loan_detail.pincode}}" disabled>
+</div>
+</div>
+
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* MONTHLY INCOME </label>
+<input type="text" name="income" value="{{loan_detail.income}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* LOAN AMOUNT </label>
+<input type="text" name="l_amount" value="{{loan_detail.l_amount}}" disabled>
+</div>
+</div>
+
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* LOAN TENURE IN MONTH </label>
+<input type="text" name="l_tenure" value="{{loan_detail.l_tenure}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Interest Rate For Loan</a> </label>
+<input type="text" name="l_interest_rate" value="{{loan_detail.l_interest_rate}}" disabled>
+</div>
+</div>
+
+<div class="col-lg-6">
+</div>
+<a href="{% url 'bank_admin_management:approve' loan_detail.pk %}" class="btn btn-success mr-3 mt-30">Approv</a>
+<a href="{% url 'bank_admin_management:not_approve' loan_detail.pk %}" class="btn btn-danger mt-30">Dismiss</a>
+
+</div>
+</form>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</main>
+{% endblock %}

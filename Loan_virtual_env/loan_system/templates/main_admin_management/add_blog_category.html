@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Main Admin :: Add Blog Category</title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<div class="slider-height2 hero-overly2 d-flex align-items-center">
+<div class="container">
+<div class="row">
+<div class="col-xl-12">
+<div class="hero-cap text-center pt-200">
+<h2 style="text-decoration: underline;">Add Blog Category</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="apply-area pt-100 pb-150">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<div class="apply-wrapper">
+
+<form method="POST">{% csrf_token %}
+<div class="row">
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* Enter Blog Category</label>
+<input type="text" name="category" placeholder="Enter Blog Category" required>
+</div>
+</div>
+
+
+<button class="btn apply-btn mt-30" type="submit">Add Blog Category</button>
+
+</div>
+</form>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</main>
+{% endblock %}

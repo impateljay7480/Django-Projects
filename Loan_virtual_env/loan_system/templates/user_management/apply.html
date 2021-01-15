@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>User :: Loan Apply Form</title>
+{% endblock %}
+
+{% block main %}
+<main>
+
+<div class="slider-height2 hero-overly2 d-flex align-items-center">
+<div class="container">
+<div class="row">
+<div class="col-xl-12">
+<div class="hero-cap text-center pt-200">
+<h2 style="text-decoration: underline;">Loan Apply Form</h2>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="apply-area pt-100 pb-150">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<div class="apply-wrapper">
+
+<form method="POST">{% csrf_token %}
+<div class="row">
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* SELECT LOAN TYPE</label>
+<div class="select-option mb-10">
+<select name="loantype" id="select1" required>
+<option value="personal Loan">Personal Loan</option>
+<option value="Home Loan">Home Loan</option>
+<option value="Vehical Loan">Vehical Loan</option>
+<option value="Education Loan">Education Loan</option>
+</select>
+</div>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* FIRST NAME</label>
+<input type="text" name="firstname" placeholder="Enter name" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Last NAME</label>
+<input type="text" name="lastname" placeholder="Enter name" required>
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="single-form  d-flex my-2">
+<label>* Select Gender</label>
+
+<div class="select-radio6">
+<div class="radio">
+<input id="radio" name="radio" type="radio" value="male" checked="" required>
+<label for="radio-6" class="radio-label">Male</label>
+</div>
+<div class="radio">
+<input id="radio" name="radio" type="radio" value="female" required>
+<label for="radio-7" class="radio-label">Female</label>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Email Adderess</label>
+<input type="email" name="email" placeholder="Enter email" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Phone Number</label>
+<input type="text" name="phone" placeholder="Enter Number" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* MARITAL STATUS</label>
+<div class="select-option mb-10">
+<select name="maritalstatus" id="select2" required>
+<option value="Merried">Merried</option>
+<option value="Unmerried">Unmerried</option>
+</select>
+</div>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Date Of Birth</label>
+<input type="date" name="dob" placeholder="Enter Date Of Birth" required>
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* SELECT PROFESSIONAL</label>
+<div class="select-option mb-10">
+<select name="professional" id="select1" required>
+<option value="Bussiness">Bussiness</option>
+<option value="Teacher">Teacher</option>
+<option value="Farmer">Farmer</option>
+</select>
+</div>
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="single-form">
+<label>* ADDRESS</label>
+<input type="text" name="address" placeholder="Enter Street Address" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* TOWN/CITY</label>
+<input type="text" name="city" placeholder="Enter city" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* DISTRICT</label>
+<input type="text" name="district" placeholder="Enter Districti" required >
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* State</label>
+<input type="text" name="state" placeholder="Enter State" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* PinCode</label>
+<input type="text" name="pincode" placeholder="Enter State" required>
+</div>
+</div>
+
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* MONTHLY INCOME </label>
+<input type="text" name="income" placeholder="Enter name" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* LOAN AMOUNT </label>
+<input type="text" name="l_amount" placeholder="Enter name" required>
+</div>
+</div>
+
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* LOAN TENURE IN MONTH </label>
+<input type="text" name="l_tenure" placeholder="Enter name" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="single-form">
+<label>* Interest Rate For Loan <a  href="https://drive.google.com/drive/u/2/my-drive" style="color:blue;text-decoration: underline;">(Please Show This After Fill This Field)</a></label>
+<input type="text" name="l_interest_rate" placeholder="Enter name" required>
+</div>
+</div>
+
+<div class="col-lg-6">
+</div>
+
+<div class="col-lg-12">
+<label for="confirm-checkbox">Select Banks</label>
+<div class="select-radio6">
+{% for i in bank_name %}
+<label class="checkbox-inline mx-3">
+  <input type="checkbox" value="{{ i.main_bank_id }}" name='{{ i.bankname }}' class="mr-3">{{ i.bankname }}
+</label>
+{% endfor %}
+
+</div>
+</div>
+
+<div class="col-lg-12">
+<div class="single-form">
+<button class="btn apply-btn mt-30" type="submit">Apply Now</button>
+</div>
+</div>
+
+</div>
+</form>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</main>
+{% endblock %}
